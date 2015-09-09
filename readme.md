@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/juleskreutzer/VSA-api.svg)](https://travis-ci.org/juleskreutzer/VSA-api)
 #VSA-API
 ---
 ###Introduction
