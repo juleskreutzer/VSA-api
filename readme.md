@@ -9,7 +9,6 @@ This database can be used for:
  - Get specific player stats
  - Get top scores
  - Get game news
- - ...
 
  ---
 ### Requirements
