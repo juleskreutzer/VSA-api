@@ -3,13 +3,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 // Create a connection with the mysql-database
 // create vars to store the data to connect to database
-$DBVAR['user'] = 'XXX';
-$DBVAR['pass'] = 'XXX';
-$DBVAR['dbname'] = 'XXX';
-$DBVAR['host'] = 'XXX';
+$DBVAR['user'] = 'nujulesn_HA';
+$DBVAR['pass'] = 'HackAttack1!';
+$DBVAR['dbname'] = 'nujulesn_hackattack';
+$DBVAR['host'] = 'localhost';
 
 // Database tables use a prefix for extra security
-$prefix = 'app_';
+$prefix = 'HA_';
 // connect to database
 $mysqli = new mysqli($DBVAR['host'], $DBVAR['user'], $DBVAR['pass'], $DBVAR['dbname']);
 if(mysqli_connect_errno())
