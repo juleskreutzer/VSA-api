@@ -10,7 +10,7 @@ if(!array_key_exists('HTTP_ORIGIN', $_SERVER))
 }
 
 try{
-  $api = new MyAPI($_REQUEST['request']);
+  $api = new HAAPI($_REQUEST['request']);
   echo $api->processAPI();
 }
 catch(Exception $e)

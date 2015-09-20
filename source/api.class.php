@@ -1,6 +1,6 @@
 <?php
 require_once('api.base.class.php');
-class MyAPI extends API{
+class HAAPI extends API{
 
   public function __construct($request)
   {
