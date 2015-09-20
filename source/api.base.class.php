@@ -73,17 +73,17 @@ Deze API is gebaseerd op een tutorial. Zie hier de tutorial: http://coreymaynard
     {
       case 'DELETE':
       case 'POST':
-        $this->request = $this->cleanInputs($_POST);
+        $this->request = $this->_cleanInputs($_POST);
         break;
       case 'GET':
-        $this->request = $this->cleanInputs($_GET);
+        $this->request = $this->_cleanInputs($_GET);
         break;
       case 'PUT':
         $this->request = $this->_cleanInputs($_GET);
         $this->file = file_get_contents("php://input");
         break;
       default:
-        $this->respone("Invalid Method", 405); // 405 is de error code die we meesturen
+        $this->_response("Invalid Method", 405); // 405 is de error code die we meesturen
     }
   }
 
@@ -91,14 +91,14 @@ Deze API is gebaseerd op een tutorial. Zie hier de tutorial: http://coreymaynard
   {
     if(method_exists($this, $this->endpoint)) // Controleren of het endpoint klopt
     {
-      return $this->response({$this->endpoint}($this->args)); // Endpoint klopt, geef data terug
+      return $this->_response($this->endpoint,($this->args)); // Endpoint klopt, geef data terug
     }
-    return $this->response("No endpoint: $this->endpoint", 404); // Endpoint klopt niet, geef error 404 terug
+    return $this->_response("No endpoint: $this->endpoint", 404); // Endpoint klopt niet, geef error 404 terug
   }
 
   private function _response($data, $status = 200)
   {
-    header("HTTP/1.1 " . $status . " " . $this->requestStatus($status)); // Dit geeft aan welke status code we hebben gekregen, code 200 is standaard wanneer alles goed gaat
+    header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status)); // Dit geeft aan welke status code we hebben gekregen, code 200 is standaard wanneer alles goed gaat
     return json_encode($data);
   }
 
@@ -128,7 +128,7 @@ Deze waarde wordt vervolgens "veilig" gemaakt
           '405' => 'Invalid Method',
           '500' => 'Internal Server Error'
         );
-      return ($status[$code])?$status[$code]:$status[500];
+      return ($status[$code])?$status[$code]:$status[500]; 
     }
 }
 ?>
