@@ -18,7 +18,29 @@ Example Endpoint
       return "Hi! The API is working correct.";
     }
     else {
-      return "This endpoint only accepts \'get\' requests.";
+      return "This endpoint only accepts GET-requests.";
     }
+  }
+
+  protected function about()
+  {
+    if($this->method == 'GET')
+    {
+      $result = array(
+        'name' => 'Hack Attack API',
+        'description' => 'Onze Vrij Studie Activiteit (VSA) wordt gebruikt om de proftaak PTS3 uit te breiden',
+        'authors' => array('Jules Kreutzer', 'Jasper Rouwhorst', 'Martijn Willems', 'Igor Chernomorets', 'Bart van Keersop'),
+        'Opdracht_Gever' => 'Fontys Hogeschool ICT, Olaf Janssen',
+        'support' => 'Jules@nujules.nl',
+        'Version' => '0.1'
+      );
+
+      return $result;
+    }
+    else {
+      return "This endpoint Only accesspt GET-requests.";
+    }
+
+
   }
 } ?>

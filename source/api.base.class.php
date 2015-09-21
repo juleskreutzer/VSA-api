@@ -84,21 +84,22 @@ Deze API is gebaseerd op een tutorial. Zie hier de tutorial: http://coreymaynard
         break;
       default:
         $this->_response("Invalid Method", 405); // 405 is de error code die we meesturen
+        // Dit zijn methodes zoals PATCH en HEAD
     }
   }
 
-  public function processAPI()
-  {
-    if(method_exists($this, $this->endpoint)) // Controleren of het endpoint klopt
-    {
-      return $this->_response($this->endpoint,($this->args)); // Endpoint klopt, geef data terug
+  public function processAPI() {
+        if (method_exists($this, $this->endpoint)) // Check of het endpoint bestaat
+        {
+            return $this->_response($this->{$this->endpoint}($this->args));
+        }
+        return $this->_response("No Endpoint: $this->endpoint", 404); // endpoint bestaat niet
     }
-    return $this->_response("No endpoint: $this->endpoint", 404); // Endpoint klopt niet, geef error 404 terug
-  }
+
 
   private function _response($data, $status = 200)
   {
-    header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status)); // Dit geeft aan welke status code we hebben gekregen, code 200 is standaard wanneer alles goed gaat
+    header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status)); // status code 200 geeft aan dat het verzoek succesvol was
     return json_encode($data);
   }
 
@@ -128,7 +129,7 @@ Deze waarde wordt vervolgens "veilig" gemaakt
           '405' => 'Invalid Method',
           '500' => 'Internal Server Error'
         );
-      return ($status[$code])?$status[$code]:$status[500]; 
+      return ($status[$code])?$status[$code]:$status[500];
     }
 }
 ?>
