@@ -2,7 +2,7 @@
 require_once('api.base.class.php');
 class HAAPI extends API{
 
-  public function __construct($request)
+  public function __construct($request, $origin)
   {
     parent::__construct($request);
     // Hier kunnen we iets doen met access tokens...
@@ -22,6 +22,10 @@ Example Endpoint
     }
   }
 
+/**
+About Endpoint
+This will return some information about the API
+*/
   protected function about()
   {
     if($this->method == 'GET')
@@ -38,9 +42,19 @@ Example Endpoint
       return $result;
     }
     else {
-      return "This endpoint Only accesspt GET-requests.";
+      return "This endpoint only accepts GET-requests.";
     }
+  }
 
-
+  protected function user()
+  {
+    if($this->method == 'GET')
+    {
+      return "The user-endpoint hasn't been implemented yet.";
+    }
+    else
+    {
+      return "This endpoint only accepts GET-requests.";
+    }
   }
 } ?>

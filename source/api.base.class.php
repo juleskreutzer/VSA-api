@@ -1,5 +1,7 @@
 <?php
 
+require('connect.php');
+
 /**
 Deze API is gebaseerd op een tutorial. Zie hier de tutorial: http://coreymaynard.com/blog/creating-a-restful-api-with-php/
 */
