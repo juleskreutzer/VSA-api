@@ -15,10 +15,10 @@ Example Endpoint
   protected function example(){
     if($this->method == 'GET')
     {
-      return "Hi! The API is working correct.";
+      return array("info" => "Hi! The API is working correct.");
     }
     else {
-      return "This endpoint only accepts GET-requests.";
+      return array("error" => "This endpoint only accepts GET-requests.");
     }
   }
 
@@ -42,19 +42,51 @@ This will return some information about the API
       return $result;
     }
     else {
-      return "This endpoint only accepts GET-requests.";
+      return array("error" => "This endpoint only accepts GET-requests.");
     }
   }
 
-  protected function user()
+  protected function authKey()
   {
     if($this->method == 'GET')
     {
-      return "The user-endpoint hasn't been implemented yet.";
+      @$username = $this->verb;
+      @$password = $this->args[0];
+
+      if(empty($username) || is_null($password))
+      {
+        return array("error" => "No username or password given");
+      }
+      $password = MD5(SHA1($password));
+
+      GLOBAL $mysqli, $prefix;
+      $stmt = $mysqli->prepare("SELECT authKey
+                                FROM ha_auth
+                                WHERE username = ?
+                                AND password = ?
+                                LIMIT 1");
+      $stmt->bind_param("ss", $username, $password);
+      $stmt->execute();
+      $stmt->bind_result($key);
+      while($stmt->fetch())
+      {
+        $row[] = array("key" => $key);
+      }
+      $stmt->close();
+      return($row);
     }
-    else
+    else if($this->method == 'POST')
     {
-      return "This endpoint only accepts GET-requests.";
+      $username = $this->verb;
+      $password = $this->args[0];
+      $password = MD5(SHA1($password));
+      $email = $this->args[1];
+      $desc = $this->args[2];
+
+      echo $username . " " . $password . " " . $email . " " . $desc;
+    }
+    else {
+      return array("error" => "The method you used is not accepted for this endpoint.");
     }
   }
 } ?>
