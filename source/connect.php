@@ -9,8 +9,6 @@ $DBVAR['pass'] = 'kreutzer'; //HackAttack1!
 $DBVAR['dbname'] = 'hackattack';
 $DBVAR['host'] = 'localhost';
 
-// Database tables use a prefix for extra security
-$prefix = 'ha_';
 // connect to database
 $mysqli = new mysqli($DBVAR['host'], $DBVAR['user'], $DBVAR['pass'], $DBVAR['dbname']);
 

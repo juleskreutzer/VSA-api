@@ -48,7 +48,7 @@ This will return some information about the API
 
   protected function authKey()
   {
-    GLOBAL $mysqli, $prefix;
+    GLOBAL $mysqli;
 
     if($this->method == 'GET')
     {
@@ -103,5 +103,43 @@ This will return some information about the API
     else {
       return array("error" => "The method you used is not accepted for this endpoint.");
     }
+  }
+
+  protected function settings()
+  {
+    GLOBAL $mysqli;
+    if($this->method == 'GET')
+    {
+      $param = @$this->verb;
+
+      switch($param)
+      {
+        case 'site_name':
+            $this->getSiteName();
+            break;
+        case 'support_email':
+            $this->getSupportEmail();
+            break;
+        case 'maintenance':
+            $this->getMaintenance();
+            break;
+        default:
+          return array("Error" => "Request not recognized.");
+      }
+    }
+  }
+
+  private function getSiteName()
+  {
+    GLOBAL $mysqli;
+    $stmt = $mysqli->prepare("SELECT site_name FROM ha_settings");
+    $stmt->execute();
+    $stmt->bind_result($site_name);
+    while($stmt->fetch())
+    {
+      $row[] = array("site_name" => $site_name);
+    }
+    $stmt->close();
+    return($row);
   }
 } ?>
