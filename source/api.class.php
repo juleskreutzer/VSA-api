@@ -5,8 +5,6 @@ class HAAPI extends API{
   public function __construct($request, $origin)
   {
     parent::__construct($request);
-    // Hier kunnen we iets doen met access tokens...
-
   }
 
 /**
@@ -46,6 +44,10 @@ This will return some information about the API
     }
   }
 
+  /**
+  This method can create a authorization key and store it in the database with the given params,
+  or get the authorization key based on a username and password
+  */
   protected function authKey()
   {
     GLOBAL $mysqli;
@@ -105,6 +107,9 @@ This will return some information about the API
     }
   }
 
+  /**
+  Get or change the website settings with this method
+  */
   protected function settings()
   {
     GLOBAL $mysqli;
@@ -115,31 +120,83 @@ This will return some information about the API
       switch($param)
       {
         case 'site_name':
-            $this->getSiteName();
+            $result = $this->getSettings('site_name');
+            return($result);
             break;
         case 'support_email':
-            $this->getSupportEmail();
+            $result = $this->getSettings('support_email');
+            return($result);
             break;
         case 'maintenance':
-            $this->getMaintenance();
+            $result = $this->getSettings('maintenance');
+            return($result);
             break;
         default:
           return array("Error" => "Request not recognized.");
       }
     }
+    else if($this->method == 'POST')
+    {
+      $param = @$this->verb;
+
+      if($param == 'maintenance' && empty(@$this->args[0]))
+      {
+        $this->args[0] = 0;
+      }
+      else if(empty(@$this->args[0]))
+      {
+        return array("Error" => "No arguments given.");
+      }
+
+      switch($param)
+      {
+        case 'site_name':
+            $this->setSettings('site_name', $this->args[0]);
+            break;
+        case 'support_email':
+            $this->setSettings('support_email', $this->args[0]);
+            break;
+        case 'maintenance':
+            $this->setSettings('maintenance', $this->args[0]);
+            break;
+        default:
+            return array("Error" => "Request not recognized.");
+      }
+    }
+    else
+    {
+      return array("Error" => "The method you used is not accepted for this endpoint.");
+    }
   }
 
-  private function getSiteName()
+  /**
+  This method will return the the requested site settings
+  @param var - This is the keyword used to search the database to return the result
+  */
+  private function getSettings($var)
   {
     GLOBAL $mysqli;
-    $stmt = $mysqli->prepare("SELECT site_name FROM ha_settings");
+    $stmt = $mysqli->prepare("SELECT $var FROM ha_settings");
     $stmt->execute();
-    $stmt->bind_result($site_name);
+    $stmt->bind_result($result);
     while($stmt->fetch())
     {
-      $row[] = array("site_name" => $site_name);
+      $row[] = array("result" => $result);
     }
     $stmt->close();
     return($row);
+  }
+
+  /**
+  This method will change the record in the database to the given VALUES
+  @param var - This is the keyword used to change the record in the database
+  @param arg - This is the argument that will be stored in the database
+  */
+  private function setSettings($var, $arg)
+  {
+      GLOBAL $mysqli;
+      $stmt = $mysqli->prepare("UPDATE ha_settings SET $var = '$arg'");
+      $result = $stmt->execute();
+      $stmt->close();
   }
 } ?>
