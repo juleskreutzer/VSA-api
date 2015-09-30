@@ -48,6 +48,8 @@ This will return some information about the API
 
   protected function authKey()
   {
+    GLOBAL $mysqli, $prefix;
+
     if($this->method == 'GET')
     {
       @$username = $this->verb;
@@ -59,7 +61,6 @@ This will return some information about the API
       }
       $password = MD5(SHA1($password));
 
-      GLOBAL $mysqli, $prefix;
       $stmt = $mysqli->prepare("SELECT authKey
                                 FROM ha_auth
                                 WHERE username = ?
@@ -83,7 +84,21 @@ This will return some information about the API
       $email = $this->args[1];
       $desc = $this->args[2];
 
-      echo $username . " " . $password . " " . $email . " " . $desc;
+      $authString = "HackAttack123" + $username + $password + $email;
+      $key = MD5($authString);
+
+      $stmt = $mysqli->prepare("INSERT INTO ha_auth (username, password, email, authkey, description) VALUES (?, ?, ?, ?, ?)");
+      $stmt->bind_param('sssss', $username, $password, $email, $key, $desc);
+      $result = $stmt->execute();
+      $stmt->close();
+
+      if($result)
+      {
+        return array("Success" => "User has been created.");
+      }
+      else {
+        return array("Error" => "Something went wrong, please try again.", "Tip" => "You can only register one user per email address.");
+      }
     }
     else {
       return array("error" => "The method you used is not accepted for this endpoint.");
