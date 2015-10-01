@@ -13,7 +13,7 @@ Example Endpoint
   protected function example(){
     if($this->method == 'GET')
     {
-      return array("info" => "Hi! The API is working correct.");
+      return array("info" => "Hi! The API is working correct.", "tip" => "parse JSON in java using this library: http://www.json.org/java/");
     }
     else {
       return array("error" => "This endpoint only accepts GET-requests.");
@@ -198,5 +198,113 @@ This will return some information about the API
       $stmt = $mysqli->prepare("UPDATE ha_settings SET $var = '$arg'");
       $result = $stmt->execute();
       $stmt->close();
+  }
+
+  /**
+  This function will return the high score for players
+  */
+  protected function highscore()
+  {
+    if($this->method == 'GET')
+    {
+      $amount = @$this->args[0] > 1 ? "LIMIT " . $this->args[0] : "LIMIT 50";
+
+      GLOBAL $mysqli;
+
+      $stmt = $mysqli->prepare("SELECT displayname, score FROM ha_user ORDER BY score " . $amount);
+      $stmt->execute();
+      $stmt->bind_result($displayname, $score);
+      while($stmt->fetch())
+      {
+        $row[] = array("Highscore" => array($displayname, $score));
+      }
+      $stmt->close();
+      if(isset($row)){
+        return($row);
+      }else{
+        return array("Error" => "No players found.");
+      }
+    }
+    else{
+      return array("Error" => "This endpoint only accepts GET requests.");
+    }
+  }
+
+  /**
+  Get the data for each module for the game, or get a specific module using verb
+  */
+  protected function module()
+  {
+    if($this->method == 'GET')
+    {
+      $param = @$this->verb;
+
+      switch($param)
+      {
+        case 'money':
+          $result = $this->getModuleData('money');
+          return $result;
+          break;
+        case 'base':
+          $result = $this->getModuleData('base');
+          break;
+        default:
+          $result = $this->getModuleDataAll();
+          return $result;
+      }
+    }
+    else
+    {
+      return array("Error" => "This endpoint only accepts GET-requests.");
+    }
+  }
+
+  /**
+  Get module data based on a specific keyword
+  */
+  private function getModuleData($var)
+  {
+    GLOBAL $mysqli;
+    $stmt = $mysqli->prepare("SELECT * FROM ha_module WHERE class = $var ORDER BY name, tier");
+    $stmt->execute();
+    $stmt->bind_param($name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price);
+    while($stmt->fetch())
+    {
+      $row[] = array($name => array("name" => $name, "class" => $class, "tier" => $tier, "description" => $description, "frequency" => $frequency, "range" => $range, "price" => $price, "sell_price" => $sell_price));
+    }
+
+    if(isset($row))
+    {
+      return($row);
+    }
+    else
+    {
+      return array("Error" => "No modules found on criteria.");
+    }
+  }
+
+  /**
+  Get all module data
+  */
+  private function getModuleDataAll()
+  {
+    GLOBAL $mysqli;
+    $stmt = $mysqli->prepare("SELECT * FROM ha_module ORDER BY name, tier");
+    $stmt->execute();
+    $stmt->bind_param($name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price);
+    while($stmt->fetch())
+    {
+      $row[] = array($name => array("name" => $name, "class" => $class, "tier" => $tier, "description" => $description, "frequency" => $frequency, "range" => $range, "price" => $price, "sell_price" => $sell_price));
+    }
+
+    if(isset($row))
+    {
+      return($row);
+    }
+    else
+    {
+      return array("Error" => "No modules found on criteria.");
+    }
+
   }
 } ?>

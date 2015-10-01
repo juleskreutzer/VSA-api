@@ -25,3 +25,17 @@ CREATE TABLE ha_settings
   support_email varchar(225) NOT NULL DEFAULT "jules@nujules.nl",
   maintenance int(1) NOT NULL DEFAULT 0
 );
+
+CREATE TABLE ha_module
+(
+  id int PRIMARY KEY AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  class varchar(50) NOT NULL,
+  tier int(1) NOT NULL DEFAULT 1,
+  description varchar(255) NOT NULL,
+  damage int NOT NULL,
+  frequency int NOT NULL,
+  damage_range int NOT NULL,
+  price int NOT NULL default 0,
+  sell_price int NOT NULL default 0
+);
