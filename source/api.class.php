@@ -247,6 +247,7 @@ This will return some information about the API
           break;
         case 'base':
           $result = $this->getModuleData('base');
+          return $result;
           break;
         default:
           $result = $this->getModuleDataAll();
@@ -265,9 +266,10 @@ This will return some information about the API
   private function getModuleData($var)
   {
     GLOBAL $mysqli;
-    $stmt = $mysqli->prepare("SELECT * FROM ha_module WHERE class = $var ORDER BY name, tier");
+    $stmt = $mysqli->prepare("SELECT * FROM ha_module WHERE class = ? ORDER BY name, tier");
+    $stmt->bind_param("s", $var);
     $stmt->execute();
-    $stmt->bind_param($name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price);
+    $stmt->bind_result($id, $name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price);
     while($stmt->fetch())
     {
       $row[] = array($name => array("name" => $name, "class" => $class, "tier" => $tier, "description" => $description, "frequency" => $frequency, "range" => $range, "price" => $price, "sell_price" => $sell_price));
@@ -291,7 +293,7 @@ This will return some information about the API
     GLOBAL $mysqli;
     $stmt = $mysqli->prepare("SELECT * FROM ha_module ORDER BY name, tier");
     $stmt->execute();
-    $stmt->bind_param($name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price);
+    $stmt->bind_result($id, $name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price);
     while($stmt->fetch())
     {
       $row[] = array($name => array("name" => $name, "class" => $class, "tier" => $tier, "description" => $description, "frequency" => $frequency, "range" => $range, "price" => $price, "sell_price" => $sell_price));
