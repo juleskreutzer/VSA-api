@@ -249,6 +249,9 @@ This will return some information about the API
           $result = $this->getModuleData('base');
           return $result;
           break;
+        case 'all':
+          $result = $this->getModuleDataAll();
+          return $result;
         default:
           $result = $this->getModuleDataAll();
           return $result;
