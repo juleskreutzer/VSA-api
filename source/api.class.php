@@ -312,4 +312,53 @@ This will return some information about the API
     }
 
   }
+
+  /**
+  This endpoint will return the data about all minions that are available
+  */
+  protected function minion()
+  {
+    if($this->method == 'GET')
+    {
+      GLOBAL $mysqli;
+      $stmt = $mysqli->prepare("SELECT * FROM ha_minion");
+      $stmt->execute();
+      $stmt->bind_result($id, $name, $hp, $attack, $speed, $defense);
+      while($stmt->fetch())
+      {
+        $row[] = array('minion' => array('name' => $name, 'hitpoints' => $hp, 'attack' => $attack, 'speed' => $speed, 'defense' => $defense));
+      }
+      $stmt->close();
+      return($row);
+
+    }
+    else {
+      return array("Error" => "This endpoint only accepts GET-requests.");
+    }
+  }
+
+  /**
+  This endpoint will return the data about all spells that are available
+  */
+  protected function spell()
+  {
+    if($this->method == 'GET')
+    {
+      GLOBAL $mysqli;
+      $stmt = $mysqli->prepare("SELECT * FROM ha_spell");
+      $stmt->execute();
+      $stmt->bind_result($id, $name, $type, $range);
+      while($stmt->fetch())
+      {
+        $row[] = array('Spell' => array('name' => $name, 'type' => $type, 'range' => $range));
+      }
+      $stmt->close();
+      return($row);
+    }
+    else {
+      return array("Error" => "This endpoint only accepts GET-requests.");
+    }
+  }
+
+
 } ?>
