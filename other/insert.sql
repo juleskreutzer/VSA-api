@@ -10,12 +10,12 @@ INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `freque
 INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`) VALUES ('CPU Upgrade', 'base', 3, 'Upgraded CPU Upgrade (Tier 3)', 0, 0, 0, 0, 0);
 
 /* INSERT INTO ha_minion */
-INSERT INTO ha_minion(`name`, `hp`, `attack`, `speed`, `defense`) VALUES ('Byte', '100', '10', '60', '40');
-INSERT INTO ha_minion(`name`, `hp`, `attack`, `speed`, `defense`) VALUES ('KiloByte', '100', '20', '50', '35');
-INSERT INTO ha_minion(`name`, `hp`, `attack`, `speed`, `defense`) VALUES ('MegaByte', '100', '30', '40', '30');
-INSERT INTO ha_minion(`name`, `hp`, `attack`, `speed`, `defense`) VALUES ('GigaByte', '100', '40', '30', '25');
-INSERT INTO ha_minion(`name`, `hp`, `attack`, `speed`, `defense`) VALUES ('TerraByte', '100', '50', '20', '20');
-INSERT INTO ha_minion(`name`, `hp`, `attack`, `speed`, `defense`) VALUES ('PetaByte', '100', '60', '10', '15');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('Byte', '100', '10', '60', 'false', '10');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('KiloByte', '100', '20', '50', 'false', '20');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('MegaByte', '100', '30', '40', 'false', '30');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('GigaByte', '100', '40', '30', 'false', '40');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('TeraByte', '100', '50', '20', 'false', '50');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('PetaByte', '100', '60', '10', 'false', '60');
 
 /* INSERT INTO ha_spell */
 INSERT INTO ha_spell(`name`, `type`, `spell_range`) VALUES ('Corrupt', 'attack', '50');
