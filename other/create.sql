@@ -39,3 +39,20 @@ CREATE TABLE ha_module
   price int NOT NULL default 0,
   sell_price int NOT NULL default 0
 );
+
+CREATE TABLE ha_minion
+(
+  id int PRIMARY KEY AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  hp int NOT NULL,
+  attack int NOT NULL,
+  speed int NOT NULL,
+  defense int NOT NULL
+);
+
+CREATE TABLE ha_spell
+(
+  id int PRIMARY KEY AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  type varchar(255) NOT NULL
+);
