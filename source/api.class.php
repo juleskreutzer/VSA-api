@@ -360,5 +360,49 @@ This will return some information about the API
     }
   }
 
+  /**
+  The login endpoint is used to login a player in the game. The endpoint needs the username and password.
+  It will then return all data of the player what can be used ingame.
+  */
+  protected function login()
+  {
+    if($this->method == 'POST')
+    {
+      $username = @$this->verb;
+      $password = @$this->args[0];
+
+      if(empty($username))
+      {
+        return array("Error" => "No username given.");
+      }
+      else if(empty($password))
+      {
+        return array("Error" => "No password given.");
+      }
+
+      GLOBAL $mysqli;
+      $stmt = $mysqli->prepare("SELECT id, displayName, score  FROM ha_user WHERE username = ? AND password = ?");
+      $stmt->bind_param("ss", $username, $password);
+      $stmt->execute();
+      $stmt->bind_result($id, $displayName, $score);
+      while($stmt->fetch())
+      {
+        $row[] = array('user' => array('id' => $id, 'displayName' => $displayName, 'score' => $score, 'username' => $username));
+      }
+      $stmt->close();
+
+      if(!isset($row))
+      {
+        return array("Error" => "Username or password is incorrect.");
+      }
+      else {
+        return($row);
+      }
+
+    }
+    else {
+      return array("Error" => "This endpoint only accepts POST-requests.");
+    }
+  }
 
 } ?>
