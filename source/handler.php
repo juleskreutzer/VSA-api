@@ -6,14 +6,15 @@ require_once('connect.php');
 
 $loginStatus = false;
 
-if(isset($_SERVER['x-auth-token']))
+if(isset($_SERVER['X_AUTH_TOKEN']))
 {
-  $key = $_SERVER['x-auth-token'];
+  $key = $_SERVER['X_AUTH_TOKEN'];
   // We still have to check if the token is correct!
   if($key == 'test')
   {
     GLOBAL $mysqli, $prefix;
-    $sql = "SELECT authkey FROM ha_auth LIMIT 1";
+    $sql = "SELECT authkey FROM ha_auth WHERE authkey = '$key'";
+
     $result = $mysqli->query($sql);
     while($row = mysqli_fetch_assoc($result))
     {
@@ -29,7 +30,7 @@ if(isset($_SERVER['x-auth-token']))
 if(!$loginStatus)
 {
 
-  header('HTTP/1.0 401 Unauthorized');
+  //header('HTTP/1.0 401 Unauthorized');
 
   echo 'You aren\'t authorized to use the API';
   return json_encode(array("error" => "Unauthorized to access API"));

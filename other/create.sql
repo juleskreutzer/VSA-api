@@ -44,10 +44,11 @@ CREATE TABLE ha_minion
 (
   id int PRIMARY KEY AUTO_INCREMENT,
   name varchar(255) NOT NULL,
-  hp int NOT NULL,
-  attack int NOT NULL,
-  speed int NOT NULL,
-  defense int NOT NULL
+  hp double NOT NULL,
+  damage double NOT NULL,
+  speed double NOT NULL,
+  encrypted boolean DEFAULT false,
+  reward double NOT NULL
 );
 
 CREATE TABLE ha_spell
