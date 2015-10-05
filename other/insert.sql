@@ -18,9 +18,9 @@ INSERT INTO ha_minion(`name`, `hp`, `attack`, `speed`, `defense`) VALUES ('Terra
 INSERT INTO ha_minion(`name`, `hp`, `attack`, `speed`, `defense`) VALUES ('PetaByte', '100', '60', '10', '15');
 
 /* INSERT INTO ha_spell */
-INSERT INTO ha_spell(`name`, `type`, `range`) VALUES ('Corrupt', 'attack', '50');
-INSERT INTO ha_spell(`name`, `type`, `range`) VALUES ('Encrypt', 'attack', '50');
-INSERT INTO ha_spell(`name`, `type`, `range`) VALUES ('Disrupt', 'attack', '50');
+INSERT INTO ha_spell(`name`, `type`, `spell_range`) VALUES ('Corrupt', 'attack', '50');
+INSERT INTO ha_spell(`name`, `type`, `spell_range`) VALUES ('Encrypt', 'attack', '50');
+INSERT INTO ha_spell(`name`, `type`, `spell_range`) VALUES ('Disrupt', 'attack', '50');
 INSERT INTO ha_spell(`name`, `type`) VALUES ('Lock-down', 'defense');
 INSERT INTO ha_spell(`name`, `type`) VALUES ('Firewall', 'defense');
 INSERT INTO ha_spell(`name`, `type`) VALUES ('Virus-scan', 'defense');
