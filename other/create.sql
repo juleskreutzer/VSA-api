@@ -55,5 +55,5 @@ CREATE TABLE ha_spell
   id int PRIMARY KEY AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   type varchar(255) NOT NULL,
-  spell_range int(4)
+  spell_range int
 );
