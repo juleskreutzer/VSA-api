@@ -20,7 +20,7 @@ INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VA
 /* INSERT INTO ha_spell */
 INSERT INTO ha_spell(`name`, `type`, `spell_range`, `cooldown`, `requiredLevel`) VALUES ('Corrupt', 'attack', '50', '0', '0');
 INSERT INTO ha_spell(`name`, `type`, `spell_range`, `cooldown`, `requiredLevel`) VALUES ('Encrypt', 'attack', '50', '0', '0');
-INSERT INTO ha_spell(`name`, `type`, `spell_range`) VALUES ('Disrupt', 'attack', '50', '0', '0');
-INSERT INTO ha_spell(`name`, `type`, `cooldown`, `requiredLevel`) VALUES ('Lock-down', 'defense', '0');
-INSERT INTO ha_spell(`name`, `type`, `cooldown`, `requiredLevel`) VALUES ('Firewall', 'defense', '0');
-INSERT INTO ha_spell(`name`, `type`, `cooldown`, `requiredLevel`) VALUES ('Virus-scan', 'defense', '0');
+INSERT INTO ha_spell(`name`, `type`, `spell_range`, `cooldown`, `requiredLevel`) VALUES ('Disrupt', 'attack', '50', '0', '0');
+INSERT INTO ha_spell(`name`, `type`, `cooldown`, `requiredLevel`) VALUES ('Lock-down', 'defense', '0', '0');
+INSERT INTO ha_spell(`name`, `type`, `cooldown`, `requiredLevel`) VALUES ('Firewall', 'defense', '0', '0');
+INSERT INTO ha_spell(`name`, `type`, `cooldown`, `requiredLevel`) VALUES ('Virus-scan', 'defense', '0', '0');

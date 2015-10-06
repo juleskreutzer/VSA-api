@@ -58,5 +58,5 @@ CREATE TABLE ha_spell
   type varchar(255) NOT NULL,
   spell_range double,
   cooldown int DEFAULT 0,
-  requiredLevel int DEFAULT 0,
+  requiredLevel int DEFAULT 0
 );
