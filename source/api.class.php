@@ -299,7 +299,7 @@ This will return some information about the API
     $stmt->bind_result($id, $name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price);
     while($stmt->fetch())
     {
-      $row[] = array($name => array("name" => $name, "class" => $class, "tier" => $tier, "description" => $description, "frequency" => $frequency, "range" => $range, "price" => $price, "sell_price" => $sell_price));
+      $row[] = array("name" => $name, "class" => $class, "tier" => $tier, "description" => $description, "frequency" => $frequency, "range" => $range, "price" => $price, "sell_price" => $sell_price);
     }
 
     if(isset($row))
