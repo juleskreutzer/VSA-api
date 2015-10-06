@@ -321,12 +321,12 @@ This will return some information about the API
     if($this->method == 'GET')
     {
       GLOBAL $mysqli;
-      $stmt = $mysqli->prepare("SELECT * FROM ha_minion");
+      $stmt = $mysqli->prepare("SELECT name, hp, damage, speed, encrypted, reward FROM ha_minion");
       $stmt->execute();
-      $stmt->bind_result($id, $name, $hp, $attack, $speed, $defense);
+      $stmt->bind_result($name, $hp, $damage, $speed, $encrypted, $reward);
       while($stmt->fetch())
       {
-        $row[] = array('minion' => array('name' => $name, 'hitpoints' => $hp, 'attack' => $attack, 'speed' => $speed, 'defense' => $defense));
+        $row[] = array('name' => $name, 'hitpoints' => $hp, 'damage' => $damage, 'speed' => $speed, 'encrypted' => $encrypted, 'reward' => $reward);
       }
       $stmt->close();
       return($row);
