@@ -56,7 +56,7 @@ CREATE TABLE ha_spell
   id int PRIMARY KEY AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   type varchar(255) NOT NULL,
-  spell_range double,
+  spell_range int DEFAULT 0,
   cooldown int DEFAULT 0,
   requiredLevel int DEFAULT 0
 );

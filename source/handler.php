@@ -9,9 +9,7 @@ $loginStatus = false;
 if(isset($_SERVER['X_AUTH_TOKEN']))
 {
   $key = $_SERVER['X_AUTH_TOKEN'];
-  // We still have to check if the token is correct!
-  if($key == 'test')
-  {
+
     GLOBAL $mysqli, $prefix;
     $sql = "SELECT authkey FROM ha_auth WHERE authkey = '$key'";
 
@@ -23,8 +21,6 @@ if(isset($_SERVER['X_AUTH_TOKEN']))
         $loginStatus = true;
       }
     }
-    mysqli_free_result($result);
-  }
 }
 
 if(!$loginStatus)

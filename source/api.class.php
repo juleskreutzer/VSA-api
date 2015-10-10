@@ -351,10 +351,10 @@ This will return some information about the API
       GLOBAL $mysqli;
       $stmt = $mysqli->prepare("SELECT * FROM ha_spell");
       $stmt->execute();
-      $stmt->bind_result($id, $name, $type, $range, $cooldown, $requiredLevel);
+      $stmt->bind_result($id, $name, $type, $defense_range, $cooldown, $requiredLevel);
       while($stmt->fetch())
       {
-        $row[] = array('name' => $name, 'type' => $type, 'range' => $range, 'cooldown' => $cooldown, 'requiredLevel' => $requiredLevel);
+        $row[] = array('name' => $name, 'type' => $type, 'defense_range' => $defense_range, 'cooldown' => $cooldown, 'requiredLevel' => $requiredLevel);
       }
       $stmt->close();
       return($row);
