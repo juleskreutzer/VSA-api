@@ -8,10 +8,10 @@ This database can be used for:
  - Get specific player stats
  - Get top scores
  - Get game news
+ - Get information about the available modules (defense, base)
+ - Get information about the available spells
 
  ---
-### Requirements
-This API uses PHP to handle the requests and a MySQL database to store the data. This API will be tested to run the following PHP versions:
- - 5.4
- - 5.5
- - 5.6
+
+###Version
+This API will be in development during PTS3. It is possible that the API will change after the october 16 deadline.
