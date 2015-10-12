@@ -1,37 +1,38 @@
 /* INSERT INTO ha_module */
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`) VALUES ('Bitcoin Miner', 'money', 1, 'Default Bitcoin Miner', 0, 10, 0, 1000, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`) VALUES ('Bitcoin Miner', 'money', 2, 'Upgraded Bitcoin Miner (Tier 2)', 0, 50, 0, 5000, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`) VALUES ('Bitcoin Miner', 'money', 3, 'Upgraded Bitcoin Miner (Tier 3)', 0, 100, 0, 12000,0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`) VALUES ('Software Injector', 'base', 1, 'Default Software Injector', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`) VALUES ('Software Injector', 'base', 2, 'Upgraded Software Injector (Tier 2)', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`) VALUES ('Software Injector', 'base', 3, 'Upgraded Software Injector (Tier 3)', 0, 0 ,0 ,0 ,0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`) VALUES ('CPU Upgrade', 'base', 1, 'Default CPU Upgrade', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`) VALUES ('CPU Upgrade', 'base', 2, 'Upgraded CPU Upgrade (Tier 2)', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`) VALUES ('CPU Upgrade', 'base', 3, 'Upgraded CPU Upgrade (Tier 3)', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Bottlecap Antivirus', 'defense', 1, 'Default Bottlecap Antivirus', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Bottlecap Antivirus', 'defense', 2, 'Upgraded Bottlecap Antivirus (Tier 2)', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Bottlecap Antivirus', 'defense', 3, 'Upgraded Bottlecap Antivirus (Tier 3)', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Muscle Antivirus', 'defense', 1, 'Default Muscle Antivirus', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Muscle Antivirus', 'defense', 2, 'Upgraded Muscle Antivirus (Tier 2)', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Muscle Antivirus', 'defense', 3, 'Upgraded Muscle Antivirus (Tier 3)', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Scale Antivirus', 'defense', 1, 'Default Scale Antivirus', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Scale Antivirus', 'defense', 2, 'Upgraded Scale Antivirus (Tier 2)', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Scale Antivirus', 'defense', 3, 'Upgraded Scale Antivirus (Tier 3)', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Sniper Antivirus', 'defense', 1, 'Default Sniper Antivirus', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Sniper Antivirus', 'defense', 2, 'Upgraded Sniper Anitvirus (Tier 2)', 0, 0, 0, 0, 0);
-INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`)
-VALUES ('Sniper Antivirus', 'defense', 3, 'Upgraded Sniper Antivirus (Tier 3)', 0, 0, 0, 0, 0);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`) VALUES ('Bitcoin Miner', 'money', 1, 'Default Bitcoin Miner', 0, 10, 0, 1000, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`) VALUES ('Bitcoin Miner', 'money', 2, 'Upgraded Bitcoin Miner (Tier 2)', 0, 50, 0, 5000, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`) VALUES ('Bitcoin Miner', 'money', 3, 'Upgraded Bitcoin Miner (Tier 3)', 0, 100, 0, 12000, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`) VALUES ('Software Injector', 'base', 1, 'Default Software Injector', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`) VALUES ('Software Injector', 'base', 2, 'Upgraded Software Injector (Tier 2)', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`) VALUES ('Software Injector', 'base', 3, 'Upgraded Software Injector (Tier 3)', 0, 0 ,0 ,0 ,0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`) VALUES ('CPU Upgrade', 'base', 1, 'Default CPU Upgrade', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`) VALUES ('CPU Upgrade', 'base', 2, 'Upgraded CPU Upgrade (Tier 2)', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`) VALUES ('CPU Upgrade', 'base', 3, 'Upgraded CPU Upgrade (Tier 3)', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`,
+`type`, `effect`)
+VALUES ('Bottlecap Antivirus', 'defense', 1, 'Default Bottlecap Antivirus', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`)
+VALUES ('Bottlecap Antivirus', 'defense', 2, 'Upgraded Bottlecap Antivirus (Tier 2)', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`)
+VALUES ('Bottlecap Antivirus', 'defense', 3, 'Upgraded Bottlecap Antivirus (Tier 3)', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`)
+VALUES ('Muscle Antivirus', 'defense', 1, 'Default Muscle Antivirus', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`)
+VALUES ('Muscle Antivirus', 'defense', 2, 'Upgraded Muscle Antivirus (Tier 2)', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`)
+VALUES ('Muscle Antivirus', 'defense', 3, 'Upgraded Muscle Antivirus (Tier 3)', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`)
+VALUES ('Scale Antivirus', 'defense', 1, 'Default Scale Antivirus', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`)
+VALUES ('Scale Antivirus', 'defense', 2, 'Upgraded Scale Antivirus (Tier 2)', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`)
+VALUES ('Scale Antivirus', 'defense', 3, 'Upgraded Scale Antivirus (Tier 3)', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`,`type`, `effect`)
+VALUES ('Sniper Antivirus', 'defense', 1, 'Default Sniper Antivirus', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`)
+VALUES ('Sniper Antivirus', 'defense', 2, 'Upgraded Sniper Anitvirus (Tier 2)', 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `frequency`, `damage_range`, `price`, `sell_price`, `type`, `effect`)
+VALUES ('Sniper Antivirus', 'defense', 3, 'Upgraded Sniper Antivirus (Tier 3)', 0, 0, 0, 0, 0, NULL, NULL);
 
 /* INSERT INTO ha_minion */
 INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('Byte', '100', '10', '3.5', 'false', '10');

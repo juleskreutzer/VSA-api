@@ -33,11 +33,13 @@ CREATE TABLE ha_module
   class varchar(50) NOT NULL,
   tier int(1) NOT NULL DEFAULT 1,
   description varchar(255) NOT NULL,
-  damage int NOT NULL,
+  damage double NOT NULL,
   frequency int NOT NULL,
   damage_range int NOT NULL,
   price int NOT NULL default 0,
-  sell_price int NOT NULL default 0
+  sell_price int NOT NULL default 0,
+  type varchar(255),
+  effect varchar(255)
 );
 
 CREATE TABLE ha_minion
