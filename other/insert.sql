@@ -34,12 +34,12 @@ INSERT INTO ha_module (`name`, `class`, `tier`, `description`, `damage`, `freque
 VALUES ('Sniper Antivirus', 'defense', 3, 'Upgraded Sniper Antivirus (Tier 3)', 0, 0, 0, 0, 0);
 
 /* INSERT INTO ha_minion */
-INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('Byte', '100', '10', '60', 'false', '10');
-INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('KiloByte', '100', '20', '50', 'false', '20');
-INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('MegaByte', '100', '30', '40', 'false', '30');
-INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('GigaByte', '100', '40', '30', 'false', '40');
-INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('TeraByte', '100', '50', '20', 'false', '50');
-INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('PetaByte', '100', '60', '10', 'false', '60');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('Byte', '100', '10', '3.5', 'false', '10');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('KiloByte', '100', '20', '3', 'false', '20');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('MegaByte', '100', '30', '2.5', 'false', '30');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('GigaByte', '100', '40', '2', 'false', '40');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('TeraByte', '100', '50', '1.5', 'false', '50');
+INSERT INTO ha_minion(`name`, `hp`, `damage`, `speed`, `encrypted`, `reward`) VALUES ('PetaByte', '100', '60', '1', 'false', '60');
 
 /* INSERT INTO ha_spell */
 INSERT INTO ha_spell(`name`, `type`, `spell_range`, `cooldown`, `requiredLevel`) VALUES ('Corrupt', 'attack', '50', '0', '0');
