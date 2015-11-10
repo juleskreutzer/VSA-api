@@ -384,14 +384,17 @@ This will return some information about the API
         return array("Error" => "No password given.");
       }
 
+      // Encrypt the password using MD5
+      $encryptedPassword = MD5($password);
+
       GLOBAL $mysqli;
       $stmt = $mysqli->prepare("SELECT id, displayName, score  FROM ha_user WHERE username = ? AND password = ?");
-      $stmt->bind_param("ss", $username, $password);
+      $stmt->bind_param("ss", $username, $encryptedPassword);
       $stmt->execute();
       $stmt->bind_result($id, $displayName, $score);
       while($stmt->fetch())
       {
-        $row[] = array('user' => array('id' => $id, 'displayName' => $displayName, 'score' => $score, 'username' => $username));
+        $row[] = array('status' => 1, 'user' => array('id' => $id, 'displayName' => $displayName, 'score' => $score, 'username' => $username));
       }
       $stmt->close();
 
@@ -406,6 +409,89 @@ This will return some information about the API
     }
     else {
       return array("Error" => "This endpoint only accepts POST-requests.");
+    }
+  }
+
+  /**
+  Register a new user account
+  First we check if all required values are given. Then we check if the username or email address have been used before to register a user account.
+
+  If the password has been given, we encrypt it again. This will be a simple MD5 encryption. For extra security, also encrypt the password before sending it to the API. This will be the responsibility of the developer using the API.
+  After all the checks passed, we create a new user account.
+  */
+  protected function register()
+  {
+    if($this->method == 'POST')
+    {
+      $username = @$this->verb;
+      $password = @$this->args[0];
+      $displayname = @$this->args[1];
+      $email = @$this->args[2];
+
+      // Check if all values are given
+      if($username == '')
+      {
+        return array("Error" => "No username given");
+      }
+      else if($password == '')
+      {
+        return array("Error" => "No password given");
+      }
+      else if($displayname == '')
+      {
+        return array("Error" => "No displayname given");
+      }
+      else if($email == '')
+      {
+        return array("Error" => "No email given");
+      }
+
+      // Encrypt the password using MD5
+      $encryptedPassword = MD5($password);
+      GLOBAL $mysqli;
+      $stmt = $mysqli->prepare("SELECT count('email') AS email FROM ha_user WHERE email = ?");
+      $stmt->bind_param("s", $email);
+      $stmt->execute();
+      $stmt->bind_result($mail);
+      while($stmt->fetch())
+      {
+        if($mail > 0)
+        {
+          return array("Error" => "There is already a user account created on this email address.");
+        }
+      }
+      $stmt->close();
+
+      $st = $mysqli->prepare("SELECT count('username') AS username FROM ha_user WHERE username = ?");
+      $st->bind_param("s", $username);
+      $st->execute();
+      $st->bind_result($user);
+      while($st->fetch())
+      {
+        if($user > 0)
+        {
+          return array("Error" => "This username is already in use with another account");
+        }
+      }
+      $st->close();
+
+      $statement = $mysqli->prepare("INSERT INTO ha_user('displayName', 'username', 'password', 'email') VALUES (?, ?, ?, ?)");
+      $statement->bind_param("ssss", $displayname, $username, $password, $email);
+      $result = $statement->execute();
+      $statement->close();
+
+      if($result)
+      {
+        return array("Success" => "The user has been registered!");
+      }
+      else
+      {
+        return array("Error" => "Something went wrong, please try again.");
+      }
+
+    }
+    else{
+      return array("Error" => "This endpoint only accepts POST-requests");
     }
   }
 
