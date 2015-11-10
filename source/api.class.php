@@ -276,10 +276,10 @@ This will return some information about the API
     $stmt = $mysqli->prepare("SELECT * FROM ha_module WHERE class = ? ORDER BY name, tier");
     $stmt->bind_param("s", $var);
     $stmt->execute();
-    $stmt->bind_result($id, $name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price, $type, $effect);
+    $stmt->bind_result($id, $name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price, $type, $effect, $value);
     while($stmt->fetch())
     {
-      $row[] = array("name" => $name, "class" => $class, "damage" => $damage, "tier" => $tier, "description" => $description, "frequency" => $frequency, "range" => $range, "price" => $price, "sell_price" => $sell_price, "type" => $type, "effect" => $effect);
+      $row[] = array("name" => $name, "class" => $class, "damage" => $damage, "tier" => $tier, "description" => $description, "frequency" => $frequency, "range" => $range, "price" => $price, "sell_price" => $sell_price, "type" => $type, "effect" => $effect, "value" => $value);
     }
 
     if(isset($row))
@@ -300,10 +300,10 @@ This will return some information about the API
     GLOBAL $mysqli;
     $stmt = $mysqli->prepare("SELECT * FROM ha_module ORDER BY name, tier");
     $stmt->execute();
-    $stmt->bind_result($id, $name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price, $type, $effect);
+    $stmt->bind_result($id, $name, $class, $tier, $description, $damage, $frequency, $range, $price, $sell_price, $type, $effect, $value);
     while($stmt->fetch())
     {
-      $row[] = array("name" => $name, "class" => $class, "damage" => $damage, "tier" => $tier, "description" => $description, "frequency" => $frequency, "range" => $range, "price" => $price, "sell_price" => $sell_price, "type" => $type, "effect" => $effect);
+      $row[] = array("name" => $name, "class" => $class, "damage" => $damage, "tier" => $tier, "description" => $description, "frequency" => $frequency, "range" => $range, "price" => $price, "sell_price" => $sell_price, "type" => $type, "effect" => $effect, "value" => $value);
     }
 
     if(isset($row))

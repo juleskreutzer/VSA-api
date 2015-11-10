@@ -39,7 +39,8 @@ CREATE TABLE ha_module
   price int NOT NULL default 0,
   sell_price int NOT NULL default 0,
   type varchar(255),
-  effect varchar(255)
+  effect varchar(255),
+  value int(10) DEFAULT 0
 );
 
 CREATE TABLE ha_minion
