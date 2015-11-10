@@ -37,7 +37,7 @@ This API has several endpoints that can be used. All endpoints are described her
 #####```[GET]```/highscore
 - Get the highscores from the game, default is ```50```
 
-#####```[GET]```/highscore/[10]
+#####```[GET]```/highscore/{10}
 - Get the highscores from the top ```[10]``` players
 
 #####```[GET]```/minion
@@ -45,6 +45,13 @@ This API has several endpoints that can be used. All endpoints are described her
 
 #####```[GET]```/spell
 - Get the data about the spells that can be used in the game
+
+#####```[POST]```/login/{username}/{password}
+- Get the current score and displayName from the user registered with the giver username and password
+
+#####```[POST]```/register/{username}/{password}/{displayname}/{email}
+- Create a new user account with the given username, password, displayname and email
+
 
 ---
 
@@ -55,5 +62,3 @@ Need more future's for the API? Email me at [juleskreutzer@me.com](mailto:julesk
 ---
 current version: 1.0
 current version is available at [nujules](http://api.nujules.nl)
-
-

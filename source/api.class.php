@@ -448,6 +448,7 @@ This will return some information about the API
 
       // Encrypt the password using MD5
       $encryptedPassword = MD5($password);
+
       GLOBAL $mysqli;
       $stmt = $mysqli->prepare("SELECT count('email') AS email FROM ha_user WHERE email = ?");
       $stmt->bind_param("s", $email);
@@ -473,10 +474,9 @@ This will return some information about the API
           return array("Error" => "This username is already in use with another account");
         }
       }
-      $st->close();
 
-      $statement = $mysqli->prepare("INSERT INTO ha_user('displayName', 'username', 'password', 'email') VALUES (?, ?, ?, ?)");
-      $statement->bind_param("ssss", $displayname, $username, $password, $email);
+      $statement = $mysqli->prepare("INSERT INTO ha_user(displayName, username, password, email) VALUES (?, ?, ?, ?)");
+      $statement->bind_param("ssss", $displayname, $username, $encryptedPassword, $email);
       $result = $statement->execute();
       $statement->close();
 
@@ -488,11 +488,10 @@ This will return some information about the API
       {
         return array("Error" => "Something went wrong, please try again.");
       }
-
     }
     else{
       return array("Error" => "This endpoint only accepts POST-requests");
     }
   }
-
-} ?>
+}
+?>
