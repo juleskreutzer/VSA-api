@@ -431,19 +431,23 @@ This will return some information about the API
       // Check if all values are given
       if($username == '')
       {
-        return array("Error" => "No username given");
+        $row[] = array("Error" => "No username given");
+        return($row);
       }
       else if($password == '')
       {
-        return array("Error" => "No password given");
+        $row[] = array("Error" => "No password given");
+        return($row);
       }
       else if($displayname == '')
       {
-        return array("Error" => "No displayname given");
+        $row[] = array("Error" => "No displayname given");
+        return($row);
       }
       else if($email == '')
       {
-        return array("Error" => "No email given");
+        $row[] = array("Error" => "No email given");
+        return($row);
       }
 
       // Encrypt the password using MD5
@@ -458,7 +462,8 @@ This will return some information about the API
       {
         if($mail > 0)
         {
-          return array("Error" => "There is already a user account created on this email address.");
+          $row[] = array("Error" => "There is already a user account created on this email address.");
+          return($row);
         }
       }
       $stmt->close();
@@ -482,15 +487,18 @@ This will return some information about the API
 
       if($result)
       {
-        return array("Success" => "The user has been registered!");
+        $row[] = array("Success" => "The user has been registered!");
+        return($row);
       }
       else
       {
-        return array("Error" => "Something went wrong, please try again.");
+        $row[] = array("Error" => "Something went wrong, please try again. (API Failure)");
+        return($row);
       }
     }
     else{
-      return array("Error" => "This endpoint only accepts POST-requests");
+      $row[] = array("Error" => "This endpoint only accepts POST-requests");
+      return($row);
     }
   }
 }
