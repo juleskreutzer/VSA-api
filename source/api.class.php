@@ -351,10 +351,10 @@ This will return some information about the API
       GLOBAL $mysqli;
       $stmt = $mysqli->prepare("SELECT * FROM ha_spell");
       $stmt->execute();
-      $stmt->bind_result($id, $name, $type, $defense_range, $cooldown, $requiredLevel);
+      $stmt->bind_result($id, $name, $type, $defense_range, $cooldown, $requiredLevel, $duration);
       while($stmt->fetch())
       {
-        $row[] = array('name' => $name, 'type' => $type, 'defense_range' => $defense_range, 'cooldown' => $cooldown, 'requiredLevel' => $requiredLevel);
+        $row[] = array('name' => $name, 'type' => $type, 'defense_range' => $defense_range, 'cooldown' => $cooldown, 'requiredLevel' => $requiredLevel, 'duration' => $duration);
       }
       $stmt->close();
       return($row);
@@ -377,11 +377,13 @@ This will return some information about the API
 
       if(empty($username))
       {
-        return array("Error" => "No username given.");
+        $row[] = array("status" => 0, "Error" => "No username given.");
+        return($row);
       }
       else if(empty($password))
       {
-        return array("Error" => "No password given.");
+        $row[] = array("status" => 0, "Error" => "No password given.");
+        return($row);
       }
 
       // Encrypt the password using MD5
@@ -390,25 +392,30 @@ This will return some information about the API
       GLOBAL $mysqli;
       $stmt = $mysqli->prepare("SELECT id, displayName, score  FROM ha_user WHERE username = ? AND password = ?");
       $stmt->bind_param("ss", $username, $encryptedPassword);
-      $stmt->execute();
+      $result = $stmt->execute();
       $stmt->bind_result($id, $displayName, $score);
+      $stmt->store_result();
+      $rows = $stmt->num_rows;
       while($stmt->fetch())
       {
-        $row[] = array('status' => 1, 'user' => array('id' => $id, 'displayName' => $displayName, 'score' => $score, 'username' => $username));
+        if($rows > 0)
+        {
+          $row[] = array("status" => "1", "id" => $id, "displayName" => $displayName, "score" => $score, "username" => $username);
+          $stmt->close();
+          return($row);
+        }
+        else if($rows == 0) {
+          $row[] = array("status" => "0", "Error" => "Username or password is incorrect.");
+          $stmt->close();
+          return($row);
+        }
       }
-      $stmt->close();
 
-      if(!isset($row))
-      {
-        return array("Error" => "Username or password is incorrect.");
-      }
-      else {
-        return($row);
-      }
-
+      $row[] = array("status" => "0", "Error" => "Username or password is incorrect.");
+      return($row);
     }
     else {
-      return array("Error" => "This endpoint only accepts POST-requests.");
+      return array("status" => "0", "Error" => "This endpoint only accepts POST-requests.");
     }
   }
 
