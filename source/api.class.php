@@ -508,5 +508,49 @@ This will return some information about the API
       return($row);
     }
   }
+
+  protected function updateScore()
+  {
+    if($this->method == 'POST')
+    {
+      $uID = @$this->args[0];
+      $score = @$this->args[1];
+
+
+
+      if($uID == "")
+      {
+        $row[] = array("Error" => "No user ID given");
+        return($row);
+      }
+      else if($score == "")
+      {
+        $row[] = array("Error" => "No score given");
+        return($row);
+      }
+
+      GLOBAL $mysqli;
+
+      $stmt = $mysqli->prepare("UPDATE ha_user SET score = score + ? WHERE id = ?");
+      $stmt->bind_param("ss", $score, $uID);
+      $result = $stmt->execute();
+      $stmt->close();
+
+      if($result)
+      {
+        $row[] = array("Success" => "The score has been updated");
+        return($row);
+      }
+      else {
+        $row[] = array("Error" => "Something went wrong, please try again");
+        return($row);
+      }
+
+    }
+    else {
+      $row[] = array("Error" => "This endpoint only accepts POST-requests");
+      return($row);
+    }
+  }
 }
 ?>

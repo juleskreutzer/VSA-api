@@ -52,6 +52,9 @@ This API has several endpoints that can be used. All endpoints are described her
 #####```[POST]```/register/{username}/{password}/{displayname}/{email}
 - Create a new user account with the given username, password, displayname and email
 
+#####```[POST]```/updateScore/{userID}/{score}
+- Update the score for the given userID
+
 
 ---
 
