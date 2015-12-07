@@ -11,10 +11,13 @@ if(isset($_SERVER['X_AUTH_TOKEN']))
   $key = $_SERVER['X_AUTH_TOKEN'];
 
     GLOBAL $mysqli, $prefix;
-    $sql = "SELECT authkey FROM ha_auth WHERE authkey = '$key'";
-
-    $result = $mysqli->query($sql);
-    while($row = mysqli_fetch_assoc($result))
+    
+    $stmt = $mysqli->prepare("SELECT authkey FROM ha_auth WHERE authkey = :key");
+    $stmt->bindParam(':key', $key);
+    
+    $stmt->execute();
+    
+    while($row = $stmt->fetch())
     {
       if($row['authkey'] == $key)
       {
