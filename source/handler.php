@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 require_once('connect.php');
 
-$loginStatus = false;
+$loginStatus = true;
 
 if(isset($_SERVER['X_AUTH_TOKEN']))
 {

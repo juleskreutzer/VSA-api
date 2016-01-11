@@ -40,6 +40,7 @@ Deze API is gebaseerd op een tutorial. Zie hier de tutorial: http://coreymaynard
     header("Access-Control-Allow-Origin: *"); // Geen restrictie waar het verzoek vandaan komt
     header("Access-Control-Allow-Methods: *"); // Alle HTTP request mogen worden uitgevoerd (POST, PUT, GET, delete)
     header("Content-type: application/json"); // Type response, in dit geval wordt de response terug gezonden in JSON
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept"); // Support for modern browsers
 
     $this->args = explode('/', rtrim($request, '/')); // Alle argumenten ophalen, bv in /user/<id>/update/email/<email> : args zijn user, <id>, update, email, <email>
     $this->endpoint = array_shift($this->args); // argumenten weer in juiste volgorde zetten
