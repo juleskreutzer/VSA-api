@@ -366,14 +366,14 @@ This will return some information about the API
 
   /**
   The login endpoint is used to login a player in the game. The endpoint needs the username and password.
-  It will then return all data of the player what can be used ingame.
+  It will then return all data of the player that can be used ingame.
   */
   protected function login()
   {
     if($this->method == 'POST')
     {
-      $username = @$this->verb;
-      $password = @$this->args[0];
+      $username = $_POST['username'];
+      $password = $_POST['password'];
 
       if(empty($username))
       {
@@ -387,6 +387,7 @@ This will return some information about the API
       }
 
       // Encrypt the password using MD5
+      // TODO: Use strong hashing sush as bcrypt
       $encryptedPassword = MD5($password);
 
       GLOBAL $mysqli;
@@ -430,10 +431,10 @@ This will return some information about the API
   {
     if($this->method == 'POST')
     {
-      $username = @$this->verb;
-      $password = @$this->args[0];
-      $displayname = @$this->args[1];
-      $email = @$this->args[2];
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+      $displayname = $_POST['displayname'];
+      $email = $_POST['email'];
 
       // Check if all values are given
       if($username == '')
@@ -457,7 +458,8 @@ This will return some information about the API
         return($row);
       }
 
-      // Encrypt the password using MD5
+      // Hash the password using MD5
+      // TOOD: Use proper 21st century hashing like bcrypt
       $encryptedPassword = MD5($password);
 
       GLOBAL $mysqli;
