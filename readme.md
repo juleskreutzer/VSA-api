@@ -64,10 +64,10 @@ This API has several endpoints that can be used. All endpoints are described her
 
 ---
 
-###Future request
-Need more future's for the API? Email me at [juleskreutzer@me.com](mailto:juleskreutzer@me.com)
+###Feature request
+Need more features for the API? Email me at [juleskreutzer@me.com](mailto:juleskreutzer@me.com)
 
 
 ---
-current version: 1.0
+current version: 0.1
 current version is available at [nujules](http://api.nujules.nl)
